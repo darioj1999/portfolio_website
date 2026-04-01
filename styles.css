@@ -1,15 +1,95 @@
 header {
-    border: 1px solid black;
+    background-color: bisque;
+    color: white;
+    border: 2px solid snow;
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
 }
 
-aside {
-    border: 1px solid black;
+nav {
+    background-color: bisque;
+}
+
+#navBar {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.navLi {
+    margin: 10px 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #f1c40f;
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 section {
-    border: 1px solid black;
+    flex: 3; 
+    margin-right: 20px;
+}
+
+article {
+    background: bisque;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+aside {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 20px;
+    flex: 1;
+    background: bisque;
+    padding: 15px;
+    border-radius: 5px;
+    padding-left: 10px;
+    height: fit-content;
+}
+
+.vid{
+    position:fixed;
+    right:0;
+    bottom:0;
+    z-index: -1;
 }
 
 footer {
-    border: 1px solid black;
+    background-color: bisque;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 300px;
+    border: 2px solid snow;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+img#random {
+    width: 150px;
+    height: 150px;
+    border: 5px solid rebeccapurple;
+}
+

@@ -7,33 +7,42 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <video autoplay loop muted plays-inline class="vid">
+        <source src="video.mp4" type="video/mp4">
+    </video>
     <header>
         <h1>My Portfolio</h1>
     </header>
 
     <nav>
-        <ul>
-            <li><a href='#'>Home</a></li>
-            <li><a href='#'>My Projects</a></li>
-            <li><a href='#'>Info</a></li>
-            <li><a href="#">Contact</a></li>
+        <ul id="navBar">
+            <li class="navLi"><a href='#'>Home</a></li>
+            <li class="navLi"><a href='#'>My Projects</a></li>
+            <li class="navLi"><a href='#'>Info</a></li>
+            <li class="navLi"><a href="#">Contact</a></li>
+            <li class="navLi"><button id="toggle-theme">Toggle Theme</button></li>
         </ul>
     </nav>
-    <div>
+    <div class="container">
         <aside>
-            <h3>Picture here</h3>
-            <div>My info will be displayed here</div>
+            <img src="placeholder.avif" id="random">
+            <div>
+                First Name: Dario <br>
+                Last Name: Juric <br>
+                University: WKU <br>
+                Bachelors in Computer Science
+            </div>
         </aside>
         <section>
             <article>
                 <h3>My projects</h3>
-                <p>this will display my projects and other coding stuff that i have done</p>
+                <a href="https://github.com/fensafi/CS-496-Project">Advisor Scheduler with Chat bot</a>
             </article>
         </section>
     </div>
 
     <footer>
-        here could be a 'contact me' or more navigation
+        Contact Me
     </footer>
 </body>
 </html>
