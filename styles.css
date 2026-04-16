@@ -46,6 +46,7 @@ section {
 
 article {
     background: bisque;
+    border: 1px solid;
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 5px;
@@ -62,6 +63,7 @@ aside {
     border-radius: 5px;
     padding-left: 10px;
     height: fit-content;
+    margin-right: 10px;
 }
 
 .vid{
@@ -82,6 +84,7 @@ footer {
     align-items: center;
     gap: 300px;
     border: 2px solid snow;
+    border-radius: 5px;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -93,3 +96,52 @@ img#random {
     border: 5px solid rebeccapurple;
 }
 
+.project-card {
+    background: white;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.project-card a {
+    color: rebeccapurple;
+    text-decoration: none;
+}
+
+.project-card a:hover {
+    text-decoration: underline;
+}
+body.dark-mode {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+
+body.dark-mode header,
+body.dark-mode nav,
+body.dark-mode footer {
+    background-color: #16213e;
+    border-color: #0f3460;
+}
+
+body.dark-mode article,
+body.dark-mode aside {
+    background-color: #16213e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .project-card {
+    background-color: #0f3460;
+    color: #e0e0e0;
+}
+
+body.dark-mode nav ul li a {
+    color: #e0e0e0;
+}
+
+body.dark-mode #toggle-theme {
+    background-color: #0f3460;
+    color: #e0e0e0;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+}
