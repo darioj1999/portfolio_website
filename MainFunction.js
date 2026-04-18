@@ -1,6 +1,7 @@
 const body = document.body;
 const darkModeClass = 'dark-mode';
 const GITHUB_USERNAME = 'darioj1999';
+emailjs.init('lfbzcY9KNR7VBHBxE');
 
 function toggleTheme(){
     body.classList.toggle(darkModeClass);
@@ -24,6 +25,64 @@ async function loadGithubProjects() {
     } catch (err) {
         container.innerHTML = '<p>Could not load projects.</p>';
     }
+}
+
+function loadContactForm() {
+    const footer = document.getElementById('footer');
+    const footerText = document.getElementById('footer-text');
+    const form = document.getElementById('contact-form');
+    const closeBtn = document.getElementById('close-form');
+
+    // open form
+    footerText.addEventListener('click', () => {
+        footerText.classList.add('hidden');
+        form.classList.remove('hidden');
+        footer.classList.add('footer-expanded');
+    });
+
+    // cancel button
+    closeBtn.addEventListener('click', () => {
+        form.classList.add('hidden');
+        footerText.classList.remove('hidden');
+        footer.classList.remove('footer-expanded');
+        form.reset();
+    });
+
+    // submit button
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const templateParms = {
+            name: name,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+        };
+
+        const sendBtn = document.getElementById('send-btn');
+        sendBtn.textContent = 'Sending...';
+        sendBtn.disabled = true;
+
+        emailjs.send('service_qjl7c9l', 'template_ay3ua6g', templateParms)
+            .then(() => {
+                footerText.textContent = `Thanks ${name}!`;
+                form.classList.add('hidden');
+                footerText.classList.remove('hidden');
+                footer.classList.remove('footer-expanded');
+                form.reset()
+                sendBtn.textContent = 'Send';
+                sendBtn.disabled = false;
+
+                setTimeout(() => {
+                    footerText.textContent = `Contact Me`;
+                }, 4000);
+            })
+            .catch((err) => {
+                console.error('EmailJS error:', err);
+                sendBtn.textContent = 'Send';
+                sendBtn.disabled = false;
+                alert('Something went wrong. Please try again.');
+            });
+    });
 }
 
 async function loadGithubStats() {
@@ -72,7 +131,20 @@ async function loadGithubStats() {
     }
 }
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('toggle-theme').addEventListener('click', toggleTheme);
+    const toggle = document.getElementById('toggle-theme');
+
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add(darkModeClass);
+        toggle.checked = true;
+    }
+
+    toggle.addEventListener('change', () => {
+        body.classList.toggle(darkModeClass);
+        localStorage.setItem('theme', toggle.checked ? 'dark' : 'light');
+        document.querySelector('.switch-label').textContent = toggle.checked ? '☀️' : '🌙';
+    });
+
     loadGithubProjects();
     loadGithubStats();
+    loadContactForm();
 });

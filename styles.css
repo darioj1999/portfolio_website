@@ -1,6 +1,6 @@
 header {
     background-color: bisque;
-    color: white;
+    color: steelblue;
     border: 2px solid snow;
     text-align: center;
     padding: 20px;
@@ -22,13 +22,57 @@ nav {
 }
 
 nav ul li a {
-    color: white;
+    color: steelblue;
     text-decoration: none;
     font-weight: bold;
 }
 
 nav ul li a:hover {
-    color: #f1c40f;
+    color: rebeccapurple;
+}
+
+.theme-switch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    width: 48px;
+    height: 26px;
+    background-color: #ccc;
+    border-radius: 999px;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.slider::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.3s ease;
+}
+
+.theme-switch input:checked + .slider {
+    background-color: rebeccapurple;
+}
+
+.theme-switch input:checked + .slider::before {
+    transform: translateX(22px);
+}
+
+.switch-label {
+    font-size: 1.1rem;
 }
 
 .container {
@@ -37,6 +81,10 @@ nav ul li a:hover {
     margin-top: 20px;
     margin-right: auto;
     margin-left: auto;
+}
+
+.container aside div {
+    color: steelblue;
 }
 
 section {
@@ -51,6 +99,10 @@ article {
     margin-bottom: 15px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+article h3 {
+    color: steelblue;
 }
 
 aside {
@@ -75,19 +127,124 @@ aside {
 
 footer {
     background-color: bisque;
-    color: white;
+    color: steelblue;
     text-align: center;
     padding: 15px;
     margin-top: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 300px;
     border: 2px solid snow;
-    border-radius: 5px;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+}
+
+#contact-form.hidden {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#contact-form:not(.hidden) {
+    max-height: 400px;
+    opacity: 1;
+}
+
+#footer {
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.footer-expanded {
+    cursor: default;
+    padding: 30px !important;
+}
+
+#footer-text {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+#footer-text:hover {
+    color: rebeccapurple;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+#contact-form input,
+#contact-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#contact-form textarea {
+    resize: vertical;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#send-btn, #close-form {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+#send-btn {
+    background-color: rebeccapurple;
+    color: white;
+}
+
+#send-btn:hover {
+    background-color: #5a2d8a;
+}
+
+#close-form {
+    background-color: #ccc;
+    color: #333;
+}
+
+#close-form:hover {
+    background-color: #bbb;
+}
+
+body.dark-mode #contact-form input,
+body.dark-mode #contact-form textarea {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+    border-color: #0f3460;
 }
 
 img#random {
@@ -112,6 +269,7 @@ img#random {
 .project-card a:hover {
     text-decoration: underline;
 }
+
 body.dark-mode {
     background-color: #1a1a2e;
     color: #e0e0e0;

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CS 270 Project</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
     <video autoplay loop muted plays-inline class="vid">
@@ -17,10 +18,14 @@
     <nav>
         <ul id="navBar">
             <li class="navLi"><a href='#'>Home</a></li>
-            <li class="navLi"><a href='#'>My Projects</a></li>
             <li class="navLi"><a href='#'>Info</a></li>
-            <li class="navLi"><a href="#">Contact</a></li>
-            <li class="navLi"><button id="toggle-theme">Toggle Theme</button></li>
+            <li class="navLi">
+                <label class="theme-switch">
+                    <input type="checkbox" id="toggle-theme">
+                    <span class="slider"></span>
+                    <span class="switch-label">🌙</span>
+                </label>
+            </li>
         </ul>
     </nav>
     <div class="container">
@@ -44,8 +49,17 @@
         </section>
     </div>
 
-    <footer>
-        Contact Me
+    <footer id="footer">
+        <span id="footer-text">Contact Me</span>
+        <form id="contact-form" class="hidden">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" rows="3" required></textarea>
+            <div class="form-buttons">
+                <button type="submit" id="send-btn">Send</button>
+                <button type="button" id="close-form">Cancel</button>
+            </div>
+        </form>
     </footer>
     <script src="MainFunction.js"></script>
 </body>
