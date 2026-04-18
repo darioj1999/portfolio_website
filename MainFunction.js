@@ -26,7 +26,53 @@ async function loadGithubProjects() {
     }
 }
 
+async function loadGithubStats() {
+    const container = document.getElementById('github-stats');
+    try {
+        const [profileRes, reposRes] = await Promise.all([
+            fetch(`https://api.github.com/users/${GITHUB_USERNAME}`),
+            fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`)
+        ]);
+
+        const profile = await profileRes.json();
+        const repos = await reposRes.json();
+
+        const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+
+        const languages = repos
+            .map(repo => repo.language)
+            .filter(Boolean);
+        const mostUsed = languages
+            .sort((a, b) =>
+                languages.filter(l => l === b).length - languages.filter(l => l === a).length
+            )[0];
+        container.innerHTML = `
+            <h3>GitHub Stats</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">${profile.public_repos}</span>
+                    <span class="stat-label">Public Repos</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">${profile.followers}</span>
+                    <span class="stat-label">Followers</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">${totalStars}</span>
+                    <span class="stat-label">Total Stars</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">${mostUsed || 'N/A'}</span>
+                    <span class="stat-label">Top Language</span>
+                </div>
+            </div>
+        `;
+    } catch (err) {
+        container.innerHTML = '<p>Could not load GitHub stats.</p>';
+    }
+}
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('toggle-theme').addEventListener('click', toggleTheme);
     loadGithubProjects();
+    loadGithubStats();
 });
